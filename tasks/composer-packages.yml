@@ -8,3 +8,4 @@
     composer global require {{ item.name }}:{{ item.release | default('@stable') }} --no-progress
     creates={{ packages_composer_home_path }}/vendor/{{ item.name }}
   with_items: "{{ packages_composer_packages }}"
+  when: packages_composer_packages is defined

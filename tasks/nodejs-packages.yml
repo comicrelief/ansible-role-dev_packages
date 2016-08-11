@@ -12,3 +12,4 @@
     NPM_CONFIG_PREFIX: "{{ packages_nodejs_npm_config_dir }}"
     NODE_PATH: "{{ packages_nodejs_npm_config_dir }}/lib/node_modules"
   with_items: "{{ packages_nodejs_npm_packages }}"
+  when: packages_nodejs_npm_packages is defined
