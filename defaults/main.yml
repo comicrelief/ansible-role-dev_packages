@@ -11,10 +11,6 @@ packages_nodejs: true
 packages_nodejs_version: v4.4.7
 packages_nodejs_arc: x64
 
-packages_composer_packages:
-  - name: phing/phing
-    release: 2.*
+packages_composer_packages: {}
 
-packages_nodejs_npm_packages:
-  - name: grunt-cli
-    release: latest
+packages_nodejs_npm_packages: {}
