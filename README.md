@@ -106,7 +106,7 @@ None
 
 ### Local Variables
 
-Test kitchen reads the variables from a directory called `local` and they will be interpreted as Group Vars (see [Ansible Documentation](http://docs.ansible.com/ansible/playbooks_variables.html) for more info). Modify them if you want to do some test with your role.
+Test kitchen reads the variables from a directory called `local` and they will be interpreted as Group Vars (see [Ansible Documentation](http://docs.ansible.com/ansible/intro_inventory.html#group-variables) for more info). Modify them if you want to do some test with your role.
 
 ### Create
 
