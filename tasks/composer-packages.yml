@@ -1,0 +1,10 @@
+---
+
+- name: Install composer packages globally
+  become: yes
+  become_user: "{{ packages_owner }}"
+  shell: >
+    COMPOSER_HOME={{ packages_composer_home_path }}
+    composer global require {{ item.name }}:{{ item.release | default('@stable') }} --no-progress
+    creates={{ packages_composer_home_path }}/vendor/{{ item.name }}
+  with_items: "{{ packages_composer_packages }}"

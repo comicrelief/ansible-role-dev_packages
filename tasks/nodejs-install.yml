@@ -1,0 +1,57 @@
+---
+
+- name: Check if nodejs and npm are installed
+  stat:
+    path: "{{ packages_nodejs_path }}/bin/{{ packages_nodejs_bin }}"
+  register: nodejs_bin
+
+- name: Check if node link exists
+  stat:
+    path: "/usr/local/bin/{{ packages_nodejs_bin }}"
+  register: node_link
+
+- name: Check if npm link exists
+  stat:
+    path: "/usr/local/bin/{{ packages_nodejs_npm_bin }}"
+  register: npm_link
+
+- name: Get the nodejs binaries
+  get_url:
+    url: "{{ packages_nodejs_url }}"
+    dest: /tmp/nodejs.tar.xz
+    mode: 0755
+  when: not nodejs_bin.stat.exists
+
+- name: Untar nodejs binaries
+  unarchive:
+    src: /tmp/nodejs.tar.xz
+    dest: /tmp
+    remote_src: yes
+  when: not nodejs_bin.stat.exists
+
+- name: Move untarred directory to global path
+  shell: >
+    mv {{ packages_nodejs_untar_dir }} {{ packages_nodejs_path }}
+    chdir=/tmp
+  when: not nodejs_bin.stat.exists
+
+- name: Create node symlink to /usr/local/bin
+  file:
+    src: "{{ packages_nodejs_path }}/bin/{{ packages_nodejs_bin }}"
+    dest: "/usr/local/bin/{{ packages_nodejs_bin }}"
+    state: link
+  when: not node_link.stat.exists
+
+- name: Create npm symlink to /usr/local/bin
+  file:
+    src: "{{ packages_nodejs_path }}/bin/{{ packages_nodejs_npm_bin }}"
+    dest: "/usr/local/bin/{{ packages_nodejs_npm_bin }}"
+    state: link
+  when: not npm_link.stat.exists
+
+- name: Ensure npm global directory is created
+  file:
+    path: "{{ packages_nodejs_npm_config_dir }}"
+    owner: "{{ packages_owner }}"
+    group: "{{ packages_group }}"
+    state: directory

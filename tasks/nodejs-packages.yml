@@ -1,0 +1,14 @@
+---
+
+- name: Install npm global packages
+  become: yes
+  become_user: "{{ packages_owner }}"
+  npm:
+    name: "{{ item.name }}"
+    version: "{{ item.release | default('latest') }}"
+    global: yes
+    state: present
+  environment:
+    NPM_CONFIG_PREFIX: "{{ packages_nodejs_npm_config_dir }}"
+    NODE_PATH: "{{ packages_nodejs_npm_config_dir }}/lib/node_modules"
+  with_items: "{{ packages_nodejs_npm_packages }}"

@@ -1,0 +1,13 @@
+---
+
+- include: composer-install.yml
+  when: packages_composer
+
+- include: nodejs-install.yml
+  when: packages_nodejs
+
+- include: composer-packages.yml
+  when: packages_composer
+
+- include: nodejs-packages.yml
+  when: packages_nodejs

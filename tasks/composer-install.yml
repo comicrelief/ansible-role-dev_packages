@@ -1,0 +1,50 @@
+---
+
+- name: Check if composer is installed
+  stat:
+    path: "{{ packages_composer_path }}/{{ packages_composer_bin }}"
+  register: composer_bin
+
+- name: Check if composer link exists
+  stat:
+    path: "/usr/local/bin/{{ packages_composer_bin }}"
+  register: composer_link
+
+- name: Download composer
+  get_url:
+    url: "{{ packages_composer_url }}"
+    dest: /tmp/composer.php
+    mode: 0755
+  when: not composer_bin.stat.exists
+
+- name: Install composer
+  command: >
+    php composer.php {% if package_composer_version != '' %} --version={{ package_composer_version }}{% endif %}
+    chdir=/tmp
+  when: not composer_bin.stat.exists
+
+- name: Create composer directory
+  file:
+    path: "{{ packages_composer_path }}"
+    state: directory
+  when: not composer_bin.stat.exists
+
+- name: Move composer executable to its directory
+  shell: >
+    mv composer.phar {{ packages_composer_path }}/{{ packages_composer_bin }}
+    chdir=/tmp
+  when: not composer_bin.stat.exists
+
+- name: Create composer symlink to /usr/local/bin
+  file:
+    src: "{{ packages_composer_path }}/{{ packages_composer_bin }}"
+    dest: "/usr/local/bin/{{ packages_composer_bin }}"
+    state: link
+  when: not composer_link.stat.exists
+
+- name: Ensure composer directory exists
+  file:
+    path: "{{ packages_composer_home_path }}"
+    owner: "{{ packages_owner }}"
+    group: "{{ packages_group }}"
+    state: directory
