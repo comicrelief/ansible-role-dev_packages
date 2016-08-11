@@ -14,3 +14,4 @@ packages_nodejs_arc: x64
 packages_composer_packages: {}
 
 packages_nodejs_npm_packages: {}
+packages_nodejs_npm_config_dir: /usr/local/lib/npm
