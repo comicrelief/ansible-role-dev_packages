@@ -7,5 +7,5 @@ packages_composer_url: https://getcomposer.org/installer
 packages_nodejs_path: /var/lib/nodejs
 packages_nodejs_bin: node
 packages_nodejs_npm_bin: npm
-packages_nodejs_url: https://nodejs.org/dist/{{ package_nodejs_version }}/node-{{ package_nodejs_version }}-linux-{{ package_nodejs_arc }}.tar.xz
-packages_nodejs_untar_dir: node-{{ package_nodejs_version }}-linux-{{ package_nodejs_arc }}
+packages_nodejs_url: "https://nodejs.org/dist/{{ package_nodejs_version }}/node-{{ package_nodejs_version }}-linux-{{ package_nodejs_arc }}.tar.xz"
+packages_nodejs_untar_dir: "node-{{ package_nodejs_version }}-linux-{{ package_nodejs_arc }}"
