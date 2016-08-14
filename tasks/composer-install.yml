@@ -19,7 +19,7 @@
 
 - name: Install composer
   command: >
-    php composer.php {% if package_composer_version != '' %} --version={{ package_composer_version }}{% endif %}
+    php composer.php {% if packages_composer_version != '' %} --version={{ packages_composer_version }}{% endif %}
     chdir=/tmp
   when: not composer_bin.stat.exists
 
