@@ -8,8 +8,8 @@ packages_composer_version: ''
 packages_composer_home_path: ~/.composer
 
 packages_nodejs: true
-packages_nodejs_version: v4.4.7
-packages_nodejs_arc: x64
+packages_nodejs_version: ''
+packages_nodejs_arc: ''
 
 packages_composer_packages: {}
 
