@@ -1,0 +1,7 @@
+---
+
+- name: Set PATH in /etc/environment
+  lineinfile:
+    dest: /etc/environment
+    state: present
+    line: "PATH={{ packages_env_path }}"

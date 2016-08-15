@@ -11,3 +11,6 @@
 
 - include: nodejs-packages.yml
   when: packages_nodejs
+
+- include: set-path.yml
+  when: packages_env_path is defined
