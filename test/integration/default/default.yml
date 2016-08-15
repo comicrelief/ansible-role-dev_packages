@@ -21,9 +21,5 @@
   post_tasks:
     - name: Grunt version
       shell: grunt --version
-      environment:
-        PATH: "/home/vagrant/.composer/vendor/bin:/usr/local/lib/npm/bin:{{ ansible_env.PATH }}"
     - name: phing version
       shell: phing -v
-      environment:
-        PATH: "/usr/local/lib/npm/bin:/home/vagrant/.composer/vendor/bin:{{ ansible_env.PATH }}"
