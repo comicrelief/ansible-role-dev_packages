@@ -64,6 +64,12 @@ packages_nodejs_npm_config_dir: /usr/local/lib/npm
 
 **packages_nodejs_npm_config_dir**: The directory where npm will install the given packages to.
 
+```
+packages_env_path: ''
+```
+
+The path to add to the PATH environment variable. If empty, it'll skip the task that writes it into `/etc/environment` file
+
 ### Internal Role Variables
 
 These variables won't be changed very often.
