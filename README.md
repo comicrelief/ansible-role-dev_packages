@@ -146,6 +146,14 @@ When you're done with your tests, you can destroy the vm by typing:
 $ kitchen destroy
 ```
 
+## Example Playbook
+
+```
+- hosts: host
+  roles:
+    - ansible-role-dev_packages
+```    
+
 ## License
 
 MIT/BSD
