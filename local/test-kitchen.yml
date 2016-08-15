@@ -10,3 +10,5 @@ packages_composer_packages:
 packages_nodejs_npm_packages:
   - name: grunt-cli
     release: latest
+
+packages_env_path: "/home/{{ packages_owner }}/.composer/vendor/bin:/usr/local/lib/npm/bin:{{ ansible_env.PATH }}"
